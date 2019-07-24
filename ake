@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+case "$1" in
+  "" ) gatsby develop ;;
+  build ) gatsby build ;;
+esac
