@@ -1,7 +1,8 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
+exports.onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions, getConfig }) => {
+  if (stage === 'build-javascript') {
+    const config = getConfig()
+    // Revert https://github.com/gatsbyjs/gatsby/pull/11800
+    delete config.optimization.splitChunks.cacheGroups
+    actions.replaceWebpackConfig(config)
+  }
+}
